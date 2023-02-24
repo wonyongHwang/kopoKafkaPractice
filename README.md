@@ -16,3 +16,10 @@ https://drive.google.com/drive/folders/1WuHzNVspq2zxktmeEFAEqPfkIFY9kCbq?usp=sha
 ```
 https://drive.google.com/drive/folders/13Y-T1vD6LRjI9wRhTtGZVvUSFU0MIGXa?usp=share_link
 ```
+
+
+## 📖 CentOS7.0 다운로드
+#### *상기 드라이브 접속 불가시 아래 링크에서 다운로드 가능
+```
+http://mirror.kakao.com/centos/7.9.2009/isos/x86_64/
+```
