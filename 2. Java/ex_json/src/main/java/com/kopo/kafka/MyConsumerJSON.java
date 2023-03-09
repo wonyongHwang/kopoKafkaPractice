@@ -34,6 +34,11 @@ public class MyConsumerJSON {
 					User user = new User();
 					user = (User)record.value();
 					System.out.println("User name is "+user.getName()+" and its id is "+user.getUserId());
+					UserInfo userInfo = user.getUserInfo();
+					if(userInfo != null){
+					    System.out.println(" - tel : " + userInfo.tel);
+					    System.out.println(" - addr : " + userInfo.addr);
+					}
                    
                 } else {
                     throw new IllegalStateException("get message on topic " + record.topic());
@@ -44,26 +49,3 @@ public class MyConsumerJSON {
 
 }
 
-/*
-class User
-{
-    private String userId;
-    private String name;
-
-        public String getUserId() {
-                return userId;
-        }
-        public void setUserId(String userId) {
-                this.userId = userId;
-        }
-        public String getName() {
-                return name;
-        }
-        public void setName(String name) {
-                this.name = name;
-        }
-        public String toString() {
-                return "User [userId=" + userId + " name="+ name + "]";
-        }
-}
-*/

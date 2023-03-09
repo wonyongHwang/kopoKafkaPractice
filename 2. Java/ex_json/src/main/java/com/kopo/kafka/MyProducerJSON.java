@@ -26,6 +26,10 @@ public class MyProducerJSON {
 	        User user = new User();
                 user.setUserId(Integer.toString(i));
                 user.setName("wonyong");
+                UserInfo userInfo = new UserInfo();
+                userInfo.tel = "010-1111-2222";
+		userInfo.addr = "seoul";
+                user.setUserInfo(userInfo);
                 producer.send(new ProducerRecord<String, Object>("kopo-topic", "key "+i, user));
             }
             producer.close();
@@ -41,7 +45,7 @@ class User
 {
     private String userId;
     private String name;
-
+    private UserInfo userInfo;
 	public String getUserId() {
 		return userId;
 	}
@@ -54,7 +58,17 @@ class User
 	public void setName(String name) {
 		this.name = name;
 	}
+        public void setUserInfo(UserInfo userInfo){
+		this.userInfo = userInfo;
+        }
+        public UserInfo getUserInfo(){
+                return this.userInfo;
+        }
 	public String toString() {
 		return "User [userId=" + userId + " name="+ name + "]";
 	}
+}
+class UserInfo{
+	public String tel;
+        public String addr;
 }
