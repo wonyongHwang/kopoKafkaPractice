@@ -1,4 +1,0 @@
-Manifest-Version: 1.0 
-Created-By: wayne hwang
-Main-Class: com.kopo.kafka.MyConsumer
-Class-Path: kafka-example-1.0.jar kafka_2.13-3.1.0.jar kafka-clients-3.1.0.jar slf4j-api-1.7.5.jar slf4j-simple-1.6.4.jar
