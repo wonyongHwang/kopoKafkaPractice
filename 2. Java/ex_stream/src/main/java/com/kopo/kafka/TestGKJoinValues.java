@@ -11,7 +11,7 @@ import org.apache.kafka.streams.kstream.GlobalKTable;
 import java.util.Properties;
 
 
-public class TestGKJoin{
+public class TestGKJoinValues{
     public static void main(String[] args) {
         Properties props = new Properties();
         props.put(StreamsConfig.APPLICATION_ID_CONFIG, "globalKTalbe-Test");
