@@ -1,8 +1,32 @@
 from kafka import KafkaProducer
-from json import dumps
-import time
+from kafka.errors import KafkaError
+import json
 
-producer = KafkaProducer(acks=0, bootstrap_servers='master:9092,slave1:9092,slave2:9092', value_serializer=lambda x: dumps(x).encode('utf-8'))
+producer = KafkaProducer(bootstrap_servers=['master:9092','slave1:9092','slave2:9092'])
+
+# Asynchronous by default
+future = producer.send('kopo-topic', b'raw_bytes')
+
+# Block for 'synchronous' sends
+try:
+    record_metadata = future.get(timeout=10)
+except KafkaError:
+    # Decide what to do if produce request failed...
+    log.exception()
+    pass
+
+# Successful result returns assigned partition and offset
+print (record_metadata.topic)
+print (record_metadata.partition)
+print (record_metadata.offset)
+
+# produce keyed messages to enable hashed partitioning
+producer.send('kopo-topic', key=b'foo', value=b'bar')
+
+
+# produce asynchronously
+for _ in range(100):
+    producer.send('kopo-topic', b'msg')
 
 def on_send_success(record_metadata):
     print(record_metadata.topic)
@@ -13,12 +37,11 @@ def on_send_error(excp):
     log.error('I am an errback', exc_info=excp)
     # handle exception
 
-start = time.time()
-for i in range(10000):
-	data = 'my async message ' + str(i)
-	producer.send('kopo-topic',data).add_callback(on_send_success).add_errback(on_send_error)
-	print(i)
+# produce asynchronously with callbacks
+producer.send('kopo-topic', b'raw_bytes').add_callback(on_send_success).add_errback(on_send_error)
+
 # block until all async messages are sent
 producer.flush()
-print("elapsed : ", time.time() - start)
-print('END')
+
+# configure multiple retries
+producer = KafkaProducer(retries=5)
