@@ -1,11 +1,25 @@
-# kopoKafkaPractice
-Kafka Practice
+# 🧪 kopoKafkaPractice
 
-## 📖 실습 교안과 설치 파일 모음
+A simple project for practicing Apache Kafka with Java and Maven.
 
+---
 
+## 📖 Prerequisites
 
-## 📖 CentOS7.0 다운로드
-```
-http://mirror.kakao.com/centos/7.9.2009/isos/x86_64/
-```
+Make sure the following are installed before you begin:
+
+- ☕ **OpenJDK 17**
+- 🧰 **Maven 3.6.3 or above**
+- 📨 **Kafka 3.4.0** (requires **Zookeeper 3.7**)
+
+---
+
+## 🚀 Getting Started
+
+```bash
+# Clone the repository
+git clone https://github.com/your-username/kopoKafkaPractice.git
+cd kopoKafkaPractice
+
+# Build the project
+mvn install
