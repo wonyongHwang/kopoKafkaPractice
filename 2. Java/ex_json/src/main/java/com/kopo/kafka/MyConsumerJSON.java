@@ -8,6 +8,8 @@ import org.springframework.kafka.support.serializer.JsonDeserializer;
 import java.util.Arrays;
 import java.util.Properties;
 import java.io.*;
+import java.time.Duration;
+
 public class MyConsumerJSON {
 
     public static void main(String[] args) {
@@ -25,7 +27,7 @@ public class MyConsumerJSON {
         consumer.subscribe(Arrays.asList("kopo-topic"));      // topic 설정
 
         while (true) {  // 계속 loop를 돌면서 producer의 message를 띄운다.
-            ConsumerRecords<String, Object> records = consumer.poll(500);
+            ConsumerRecords<String, Object> records = consumer.poll(Duration.ofMillis(500));
             for (ConsumerRecord<String, Object> record : records) {
                 String s = record.topic();
                 if ("kopo-topic".equals(s)) {
