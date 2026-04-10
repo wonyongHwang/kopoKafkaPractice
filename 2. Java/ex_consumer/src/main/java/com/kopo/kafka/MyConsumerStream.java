@@ -7,6 +7,8 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 import java.util.Arrays;
 import java.util.Properties;
 import java.io.*;
+import java.time.Duration;
+
 public class MyConsumerStream {
 
     public static void main(String[] args) {
@@ -24,7 +26,7 @@ public class MyConsumerStream {
 
         BufferedWriter bw = null;
         while (true) {  // 계속 loop를 돌면서 producer의 message를 띄운다.
-            ConsumerRecords<String, String> records = consumer.poll(500);
+            ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(500));
             for (ConsumerRecord<String, String> record : records) {
                 String s = record.topic();
                 if ("kopo-topic".equals(s)) {
