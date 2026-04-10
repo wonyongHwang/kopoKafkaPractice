@@ -8,9 +8,9 @@ A simple project for practicing Apache Kafka with Java and Maven.
 
 Make sure the following are installed before you begin:
 
-- ☕ **OpenJDK 17**
+- ☕ **OpenJDK 21**
 - 🧰 **Maven 3.6.3 or above**
-- 📨 **Kafka 3.4.0** (requires **Zookeeper 3.7**)
+- 📨 **Kafka 4.2.0** 
 
 ---
 
