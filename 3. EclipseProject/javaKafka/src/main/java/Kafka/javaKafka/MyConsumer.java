@@ -4,6 +4,7 @@ import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import java.util.Arrays;
 import java.util.Properties;
+import java.time.Duration;
 
 public class MyConsumer {
     public static void main(String[] args) {
@@ -16,7 +17,7 @@ public class MyConsumer {
         KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>(configs);    
         consumer.subscribe(Arrays.asList("kopo-topic"));      
         while (true) {  
-            ConsumerRecords<String, String> records = consumer.poll(500);
+            ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(500));
             for (ConsumerRecord<String, String> record : records) {
                 String s = record.topic();
                 if ("kopo-topic".equals(s)) {
