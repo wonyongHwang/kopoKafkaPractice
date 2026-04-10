@@ -30,7 +30,7 @@ public class MyProducerJSON {
                 userInfo.tel = "010-1111-2222";
 		userInfo.addr = "seoul";
                 user.setUserInfo(userInfo);
-                producer.send(new ProducerRecord<String, Object>("kopo-topic", "key "+i, user));
+                producer.send(new ProducerRecord<String, Object>("kopo-user-topic", "key "+i, user));
             }
             producer.close();
            // p.waitFor();
