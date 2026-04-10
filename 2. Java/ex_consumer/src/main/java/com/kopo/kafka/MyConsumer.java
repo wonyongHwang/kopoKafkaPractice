@@ -6,6 +6,7 @@ import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import java.util.Arrays;
 import java.util.Properties;
+import java.time.Duration;
 
 public class MyConsumer {
 
@@ -22,7 +23,7 @@ public class MyConsumer {
         KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>(configs);    // consumer 생성
         consumer.subscribe(Arrays.asList("javatopic"));      // topic 설정
         while (true) {  // 계속 loop를 돌면서 producer의 message를 띄운다.
-            ConsumerRecords<String, String> records = consumer.poll(500);
+            ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(500));
             for (ConsumerRecord<String, String> record : records) {
                 String s = record.topic();
                 if ("javatopic".equals(s)) {
